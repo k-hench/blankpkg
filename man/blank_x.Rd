@@ -13,6 +13,8 @@ blank_x(input = "planceholder code")
 echo the input string
 }
 \description{
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='\link{Experimental}'}}}{\strong{\link{Experimental}}}
+
 This is a small dummy function to exemplify the
 {roxygen} documentation, the automatic testing etc...
 }

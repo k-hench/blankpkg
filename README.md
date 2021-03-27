@@ -6,6 +6,8 @@
 
 <!-- badges: start -->
 [![R-CMD-check](https://github.com/k-hench/blankpkg/workflows/R-CMD-check/badge.svg)](https://github.com/k-hench/blankpkg/actions)
+[![Codecov test coverage](https://codecov.io/gh/k-hench/blankpkg/branch/master/graph/badge.svg)](https://codecov.io/gh/k-hench/blankpkg?branch=master)
+[![Lifecycle: maturing](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 <!-- badges: end -->
 
 The goal of blankpkg is to ...

@@ -23,6 +23,9 @@ Suggests:
     tidyverse,
     testthat (>= 3.0.0),
     knitr,
-    rmarkdown
+    rmarkdown,
+    covr
 Config/testthat/edition: 3
 VignetteBuilder: knitr
+Imports: 
+    lifecycle
