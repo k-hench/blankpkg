@@ -12,10 +12,11 @@ The goal of blankpkg is to ...
 
 ## Installation
 
-You can install the released version of blankpkg from [CRAN](https://CRAN.R-project.org) with:
+You can install the released version of blankpkg from [github](https://github.com/k-hench/blankpkg) with:
 
 ``` r
-install.packages("blankpkg")
+install.packages("remotes")
+remotes::install_github("k-hench/blankpkg")
 ```
 
 ## Example
@@ -25,8 +26,9 @@ This is a basic example which shows you how to solve a common problem:
 
 ```r
 library(blankpkg)
-#> Error in library(blankpkg): there is no package called 'blankpkg'
 ## basic example code
+blank_x()
+#> [1] "planceholder code"
 ```
 
 What is special about using `README.Rmd` instead of just `README.md`? You can include R chunks like so:
