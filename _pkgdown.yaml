@@ -1,0 +1,19 @@
+destination: docs
+url: https://k-hench.github.io/blankpkg/
+
+authors:
+  Kosmas Hench:
+    href: https://k-hench.github.io/kh/
+
+template:
+  params:
+    bootswatch: yeti
+
+figures:
+  dev: png
+
+reference:
+  - title: "Project Configuration"
+    desc: >
+      General settings that are used to keep plots consistent.
+
