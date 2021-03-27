@@ -16,4 +16,7 @@ reference:
   - title: "Project Configuration"
     desc: >
       General settings that are used to keep plots consistent.
+    contents:
+      - blank_x
+
 

@@ -17,6 +17,8 @@ Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.0
+Includes:
+    stringr
 Suggests: 
     tidyverse,
     testthat (>= 3.0.0),
