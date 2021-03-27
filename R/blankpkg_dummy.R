@@ -1,6 +1,6 @@
 #' Dummy placeholder function
 #'
-#' `r lifecycle::badge("experimental")`
+#' \Sexpr[results=rd, stage=render]{lifecycle::badge("experimental")}
 #' This is a small dummy function to exemplify the
 #' {roxygen} documentation, the automatic testing etc...
 #'
