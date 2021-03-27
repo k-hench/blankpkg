@@ -9,7 +9,7 @@ Authors@R:
            comment = c(ORCID = "0000-0003-1119-187X"))
 Description: This is an empty package template created with
     {usethis} to test useful default settings for new R packages by
-    KH
+    KH.
 License: MIT + file LICENSE
 URL: https://github.com/k-hench/blankpkg
 BugReports: https://github.com/k-hench/blankpkg/issues
