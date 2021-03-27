@@ -1,4 +1,3 @@
-
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
 
@@ -6,6 +5,7 @@
 # blankpkg <img src='man/figures/logo.png' align='right' height='139' />
 
 <!-- badges: start -->
+[![R-CMD-check](https://github.com/k-hench/blankpkg/workflows/R-CMD-check/badge.svg)](https://github.com/k-hench/blankpkg/actions)
 <!-- badges: end -->
 
 The goal of blankpkg is to ...
