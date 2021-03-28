@@ -18,11 +18,11 @@ knitr::opts_chunk$set(
 library(blankpkg)
 ```
 
-# Generic Packacge Creation
+# Generic Package Creation
 
 ## First Steps
 
-The initial creation of the package happened with {usethis} through running the R script `usethis_blank_pkg.R` from the command line:
+The initial creation of the package happened with {[usethis](https://usethis.r-lib.org/)} through running the R script `usethis_blank_pkg.R` from the command line:
 
 ```sh
 RScript --vanilla usethis_blank_pkg.R
@@ -172,7 +172,7 @@ Than the actual github actions are defined as *workflows* within `.github/workfl
 ## Repository Badges
 
 The *build* and *coverage* badge slots are created during the by the {usethis} commands `use_coverage()` and `use_github_action_check_standard()` commands and their content updated during the github actions.
-The *lifecycle* badge was added manually to the `README.Rmd`.
+The {[lifecycle](https://lifecycle.r-lib.org/)} badge was added manually to the `README.Rmd`.
 This is than rendered as `.md` by running `knitr::knit("README.Rmd", "README.md")`
 
 ## Tests
