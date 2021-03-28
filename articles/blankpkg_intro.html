@@ -248,7 +248,7 @@
 <div id="tests" class="section level2">
 <h2 class="hasAnchor">
 <a href="#tests" class="anchor"></a>Tests</h2>
-<p>To bump the coverage to 100% a test is added to include coverage for the function <code><a href="../reference/blank_x.html">blank_x()</a></code>. Therefore the R file <code>blankpkg_dummy.R</code> is opened in the Rstudio editor and the from the console <code>use_test()</code> is run. This creates and opens the file <code>tests/testthat/blankpkg_dummy.R</code>, where we add two tests:</p>
+<p>To bump the coverage to 100% a test is added to include coverage for the function <code><a href="../reference/blank_x.html">blank_x()</a></code>. Therefore the R file <code>blankpkg_dummy.R</code> is opened in the Rstudio editor and the from the console <code>use_test()</code> is run to facilitate testing powered by {<a href="https://testthat.r-lib.org">testthat</a>}. This creates and opens the file <code>tests/testthat/blankpkg_dummy.R</code>, where we add two tests:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">test_that</span><span class="op">(</span><span class="st">"default_str_length_is_still_17"</span>, <span class="op">{</span>
   <span class="fu">expect_equal</span><span class="op">(</span><span class="fu">str_length</span><span class="op">(</span><span class="fu"><a href="../reference/blank_x.html">blank_x</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>, <span class="fl">17</span><span class="op">)</span>
