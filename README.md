@@ -24,7 +24,7 @@ The whole package creation covers
 
 ## Installation
 
-You can install the development version of blankpkg from [github](https://github.com/k-hench/blankpkg) with — there is no good reason to do this though:
+You can install the development version of {blankpkg} from [github](https://github.com/k-hench/blankpkg) with the following R code — there is no good reason to do this though:
 
 ``` r
 install.packages("remotes")
