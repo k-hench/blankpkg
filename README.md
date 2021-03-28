@@ -19,7 +19,7 @@ The whole package creation covers
   - basic package build
   - code coverage using [codecov.io](https://codecov.io)
   - automatic web page generation using {[pkgdown](https://pkgdown.r-lib.org/)}
-- generating shiny badges (![dummy_badge](https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2Fk-hench%2F2ff85de813c7965f93e3715dbe6c33c1%2Fraw%2Fcd6d63f854560a15cbdf3e22fec07150dd3ebaff%2Fdummy_badge.json)) for the repository.
+- generating shiny badges ![dummy_badge](https://img.shields.io/badge/badge-shiny-brightgreen) for the repository.
 - code testing powered by {[testthat](https://testthat.r-lib.org)}
 
 ## Installation
