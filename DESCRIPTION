@@ -28,4 +28,5 @@ Suggests:
 Config/testthat/edition: 3
 VignetteBuilder: knitr
 Imports: 
-    lifecycle
+    lifecycle,
+    magrittr

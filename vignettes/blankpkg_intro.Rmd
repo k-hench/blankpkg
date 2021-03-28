@@ -17,3 +17,176 @@ knitr::opts_chunk$set(
 ```{r setup}
 library(blankpkg)
 ```
+
+# Generic Packacge Creation
+
+## First Steps
+
+The initial creation of the package happened with {usethis} through running the R script `usethis_blank_pkg.R` from the command line:
+
+```sh
+RScript --vanilla usethis_blank_pkg.R
+```
+
+```r
+library(usethis)
+
+path <- file.path("~/work/software/Rstuff", "blankpkg")
+logo_path <- file.path("~/Pictures/logos/pkg", "blankpkg.png")
+pkgdown_path <- file.path("~/work/software/Rstuff", "_pkgdown.yaml")
+
+options(
+  usethis.full_name = "Kosmas Hench",
+  usethis.protocol  = "ssh",
+  usethis.description = list(
+    "Authors@R" = utils::person(
+      "Kosmas", "Hench",
+      email = "khench@posteo.net",
+      role = c("aut", "cre"),
+      comment = c(ORCID = "0000-0003-1119-187X")),
+    URL = "https://github.com/k-hench/blankpkg",
+    BugReports = "https://github.com/k-hench/blankpkg/issues",
+    Version = "0.0.0.9000",
+    Title = "Blank Package Template",
+    Description = "This is an empty package template created with
+    {usethis} to test useful default settings
+    for new R packages by KH."
+  ),
+  usethis.destdir = "~/work/software/Rstuff/"
+)
+
+create_package(path, rstudio = TRUE)
+
+# only in non-interactive session
+proj_activate(path)
+# new pkg setup
+use_mit_license("Kosmas Hench")
+use_package("tidyverse", "Suggests")
+
+use_readme_rmd()
+use_logo(logo_path, geometry = "240x278", retina = TRUE)
+
+system("mv README.Rmd README_bu.Rmd")
+system("grep '^# blankpkg' -B 1000 README_bu.Rmd | grep -v '^# blankpkg' > README.Rmd")
+readr::write_lines(x = "# blankpkg <img src='man/figures/logo.png' align='right' height='139' />",
+                   file = "README.Rmd",
+                   append = TRUE)
+system("grep '^# blankpkg' -A 1000 README_bu.Rmd | grep -v '^# blankpkg' >> README.Rmd")
+
+knitr::knit(input = "README.Rmd", output = "README.md")
+system("mv README.md README_bu.md")
+system("tail -n +4 README_bu.md > README.md")
+file.remove(c("README_bu.Rmd", "README_bu.md"))
+use_news_md()
+
+use_testthat()
+use_test("my-test")
+use_coverage()
+use_lifecycle()
+use_pipe()
+
+use_vignette(name = "blankpkg_intro", title = "Introduction to the blankpkg package")
+
+use_git()
+system("git add .")
+system("git commit -m 'init'")
+git_branch_default()
+```
+
+After that, some manual content was executed from within the new package:
+
+```r
+usethis::use_pkgdown(config_file = "_pkgdown.yaml", destdir = "docs")
+system("cp ../_pkgdown.yaml ./_pkgdown.yaml")
+pkgdown::build_site()
+system("git add .")
+system("git commit -m 'init site'")
+usethis::use_github()
+usethis::use_github_action_check_standard()
+```
+
+where `../_pkgdown.yaml` contains:
+
+```yaml
+destination: docs
+url: https://k-hench.github.io/blankpkg/
+
+authors:
+  Kosmas Hench:
+    href: https://k-hench.github.io/kh/
+
+template:
+  params:
+    bootswatch: yeti
+
+figures:
+  dev: png
+
+reference:
+  - title: "Project Configuration"
+    desc: >
+      General settings that are used to keep plots consistent.
+    contents:
+      - blank_x
+```
+
+And a R script included to add content to the package `R/blankpkg_dummy.R`: 
+
+```r
+#' Dummy placeholder function
+#'
+#' \Sexpr[results=rd, stage=render]{lifecycle::badge("experimental")}
+#' This is a small dummy function to exemplify the
+#' {roxygen} documentation, the automatic testing etc...
+#'
+#' @param input character string
+#'
+#' @return echo the input string
+#' @export
+#'
+#' @examples
+#' blank_x()
+#'
+#' blank_x("something else...")
+blank_x <- function(input = "planceholder code"){
+  return(input)
+  }
+```
+
+## Github Actions
+
+Github Actions are a convenient service to automatize some checks and processes after pushing changes in the repo to github.
+In this package these include a check if the package can be compiled and installed on several operating systems, checking th code coverage (the percentage of code that is double checked using testing) and updating the {pkgdown} web-page.
+
+To be able to use github actions, the access to the repo needs to be automatized.
+For this *personal access tokens* (GITHUB_PAT) are created in the github user settings.
+In a similar fashion an access token is created on [codecov.io](codecov.io) and the repo is registered there to allow the monitoring of the code coverage.
+Both tokens are added as *repository secrets* in the settings of the repo on github.
+
+Than the actual github actions are defined as *workflows* within `.github/workflows/`:
+
+- `R-CMD-check.yaml`: checks if the package can be build on several OS
+- `pkgdown.yaml`: updates the {pkgdown} website upon push and publishes to the branch `gh-pages`
+- `test-coverage.yaml`: checks the code coverage of the repo (the percentage of code that is tested)
+
+## Repository Badges
+
+The *build* and *coverage* badge slots are created during the by the {usethis} commands `use_coverage()` and `use_github_action_check_standard()` commands and their content updated during the github actions.
+The *lifecycle* badge was added manually to the `README.Rmd`.
+This is than rendered as `.md` by running `knitr::knit("README.Rmd", "README.md")`
+
+## Tests
+
+To bump the coverage to 100% a test is added to include coverage for the function `blank_x()`.
+Therefore the R file `blankpkg_dummy.R` is opened in the Rstudio editor and the from the console `use_test()` is run.
+This creates and opens the file `tests/testthat/blankpkg_dummy.R`, where we add two tests:
+
+```r
+test_that("default_str_length_is_still_17", {
+  expect_equal(str_length(blank_x()), 17)
+})
+
+test_that("alternaitve_inputs", {
+  expect_equal(str_length(blank_x("dadum")), 5)
+})
+```
