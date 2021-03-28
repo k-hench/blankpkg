@@ -178,7 +178,7 @@ This is than rendered as `.md` by running `knitr::knit("README.Rmd", "README.md"
 ## Tests
 
 To bump the coverage to 100% a test is added to include coverage for the function `blank_x()`.
-Therefore the R file `blankpkg_dummy.R` is opened in the Rstudio editor and the from the console `use_test()` is run.
+Therefore the R file `blankpkg_dummy.R` is opened in the Rstudio editor and the from the console `use_test()` is run to facilitate testing powered by {[testthat](https://testthat.r-lib.org)}.
 This creates and opens the file `tests/testthat/blankpkg_dummy.R`, where we add two tests:
 
 ```r
