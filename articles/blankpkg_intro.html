@@ -102,11 +102,170 @@
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/k-hench/blankpkg">blankpkg</a></span><span class="op">)</span>
 <span class="co">#&gt; Loading required package: stringr</span></code></pre></div>
+<div id="generic-packacge-creation" class="section level1">
+<h1 class="hasAnchor">
+<a href="#generic-packacge-creation" class="anchor"></a>Generic Packacge Creation</h1>
+<div id="first-steps" class="section level2">
+<h2 class="hasAnchor">
+<a href="#first-steps" class="anchor"></a>First Steps</h2>
+<p>The initial creation of the package happened with {usethis} through running the R script <code>usethis_blank_pkg.R</code> from the command line:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1"></a><span class="ex">RScript</span> --vanilla usethis_blank_pkg.R</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">usethis</span><span class="op">)</span>
+
+<span class="va">path</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html">file.path</a></span><span class="op">(</span><span class="st">"~/work/software/Rstuff"</span>, <span class="st">"blankpkg"</span><span class="op">)</span>
+<span class="va">logo_path</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html">file.path</a></span><span class="op">(</span><span class="st">"~/Pictures/logos/pkg"</span>, <span class="st">"blankpkg.png"</span><span class="op">)</span>
+<span class="va">pkgdown_path</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html">file.path</a></span><span class="op">(</span><span class="st">"~/work/software/Rstuff"</span>, <span class="st">"_pkgdown.yaml"</span><span class="op">)</span>
+
+<span class="fu"><a href="https://rdrr.io/r/base/options.html">options</a></span><span class="op">(</span>
+  usethis.full_name <span class="op">=</span> <span class="st">"Kosmas Hench"</span>,
+  usethis.protocol  <span class="op">=</span> <span class="st">"ssh"</span>,
+  usethis.description <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>
+    <span class="st">"Authors@R"</span> <span class="op">=</span> <span class="fu">utils</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/utils/person.html">person</a></span><span class="op">(</span>
+      <span class="st">"Kosmas"</span>, <span class="st">"Hench"</span>,
+      email <span class="op">=</span> <span class="st">"khench@posteo.net"</span>,
+      role <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"aut"</span>, <span class="st">"cre"</span><span class="op">)</span>,
+      comment <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>ORCID <span class="op">=</span> <span class="st">"0000-0003-1119-187X"</span><span class="op">)</span><span class="op">)</span>,
+    URL <span class="op">=</span> <span class="st">"https://github.com/k-hench/blankpkg"</span>,
+    BugReports <span class="op">=</span> <span class="st">"https://github.com/k-hench/blankpkg/issues"</span>,
+    Version <span class="op">=</span> <span class="st">"0.0.0.9000"</span>,
+    Title <span class="op">=</span> <span class="st">"Blank Package Template"</span>,
+    Description <span class="op">=</span> <span class="st">"This is an empty package template created with
+    {usethis} to test useful default settings
+    for new R packages by KH."</span>
+  <span class="op">)</span>,
+  usethis.destdir <span class="op">=</span> <span class="st">"~/work/software/Rstuff/"</span>
+<span class="op">)</span>
+
+<span class="fu">create_package</span><span class="op">(</span><span class="va">path</span>, rstudio <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+
+<span class="co"># only in non-interactive session</span>
+<span class="fu">proj_activate</span><span class="op">(</span><span class="va">path</span><span class="op">)</span>
+<span class="co"># new pkg setup</span>
+<span class="fu">use_mit_license</span><span class="op">(</span><span class="st">"Kosmas Hench"</span><span class="op">)</span>
+<span class="fu">use_package</span><span class="op">(</span><span class="st">"tidyverse"</span>, <span class="st">"Suggests"</span><span class="op">)</span>
+
+<span class="fu">use_readme_rmd</span><span class="op">(</span><span class="op">)</span>
+<span class="fu">use_logo</span><span class="op">(</span><span class="va">logo_path</span>, geometry <span class="op">=</span> <span class="st">"240x278"</span>, retina <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+
+<span class="fu"><a href="https://rdrr.io/r/base/system.html">system</a></span><span class="op">(</span><span class="st">"mv README.Rmd README_bu.Rmd"</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/system.html">system</a></span><span class="op">(</span><span class="st">"grep '^# blankpkg' -B 1000 README_bu.Rmd | grep -v '^# blankpkg' &gt; README.Rmd"</span><span class="op">)</span>
+<span class="fu">readr</span><span class="fu">::</span><span class="fu"><a href="https://readr.tidyverse.org/reference/read_lines.html">write_lines</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"# blankpkg &lt;img src='man/figures/logo.png' align='right' height='139' /&gt;"</span>,
+                   file <span class="op">=</span> <span class="st">"README.Rmd"</span>,
+                   append <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/system.html">system</a></span><span class="op">(</span><span class="st">"grep '^# blankpkg' -A 1000 README_bu.Rmd | grep -v '^# blankpkg' &gt;&gt; README.Rmd"</span><span class="op">)</span>
+
+<span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/knit.html">knit</a></span><span class="op">(</span>input <span class="op">=</span> <span class="st">"README.Rmd"</span>, output <span class="op">=</span> <span class="st">"README.md"</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/system.html">system</a></span><span class="op">(</span><span class="st">"mv README.md README_bu.md"</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/system.html">system</a></span><span class="op">(</span><span class="st">"tail -n +4 README_bu.md &gt; README.md"</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/files.html">file.remove</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"README_bu.Rmd"</span>, <span class="st">"README_bu.md"</span><span class="op">)</span><span class="op">)</span>
+<span class="fu">use_news_md</span><span class="op">(</span><span class="op">)</span>
+
+<span class="fu">use_testthat</span><span class="op">(</span><span class="op">)</span>
+<span class="fu">use_test</span><span class="op">(</span><span class="st">"my-test"</span><span class="op">)</span>
+<span class="fu">use_coverage</span><span class="op">(</span><span class="op">)</span>
+<span class="fu">use_lifecycle</span><span class="op">(</span><span class="op">)</span>
+<span class="fu">use_pipe</span><span class="op">(</span><span class="op">)</span>
+
+<span class="fu">use_vignette</span><span class="op">(</span>name <span class="op">=</span> <span class="st">"blankpkg_intro"</span>, title <span class="op">=</span> <span class="st">"Introduction to the blankpkg package"</span><span class="op">)</span>
+
+<span class="fu">use_git</span><span class="op">(</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/system.html">system</a></span><span class="op">(</span><span class="st">"git add ."</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/system.html">system</a></span><span class="op">(</span><span class="st">"git commit -m 'init'"</span><span class="op">)</span>
+<span class="fu">git_branch_default</span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<p>After that, some manual content was executed from within the new package:</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">usethis</span><span class="fu">::</span><span class="fu">use_pkgdown</span><span class="op">(</span>config_file <span class="op">=</span> <span class="st">"_pkgdown.yaml"</span>, destdir <span class="op">=</span> <span class="st">"docs"</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/system.html">system</a></span><span class="op">(</span><span class="st">"cp ../_pkgdown.yaml ./_pkgdown.yaml"</span><span class="op">)</span>
+<span class="fu">pkgdown</span><span class="fu">::</span><span class="fu"><a href="https://pkgdown.r-lib.org/reference/build_site.html">build_site</a></span><span class="op">(</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/system.html">system</a></span><span class="op">(</span><span class="st">"git add ."</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/system.html">system</a></span><span class="op">(</span><span class="st">"git commit -m 'init site'"</span><span class="op">)</span>
+<span class="fu">usethis</span><span class="fu">::</span><span class="fu">use_github</span><span class="op">(</span><span class="op">)</span>
+<span class="fu">usethis</span><span class="fu">::</span><span class="fu">use_github_action_check_standard</span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<p>where <code>../_pkgdown.yaml</code> contains:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb5-1"><a href="#cb5-1"></a><span class="fu">destination</span><span class="kw">:</span><span class="at"> docs</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a><span class="fu">url</span><span class="kw">:</span><span class="at"> https://k-hench.github.io/blankpkg/</span></span>
+<span id="cb5-3"><a href="#cb5-3"></a></span>
+<span id="cb5-4"><a href="#cb5-4"></a><span class="fu">authors</span><span class="kw">:</span></span>
+<span id="cb5-5"><a href="#cb5-5"></a><span class="at">  </span><span class="fu">Kosmas Hench</span><span class="kw">:</span></span>
+<span id="cb5-6"><a href="#cb5-6"></a><span class="at">    </span><span class="fu">href</span><span class="kw">:</span><span class="at"> https://k-hench.github.io/kh/</span></span>
+<span id="cb5-7"><a href="#cb5-7"></a></span>
+<span id="cb5-8"><a href="#cb5-8"></a><span class="fu">template</span><span class="kw">:</span></span>
+<span id="cb5-9"><a href="#cb5-9"></a><span class="at">  </span><span class="fu">params</span><span class="kw">:</span></span>
+<span id="cb5-10"><a href="#cb5-10"></a><span class="at">    </span><span class="fu">bootswatch</span><span class="kw">:</span><span class="at"> yeti</span></span>
+<span id="cb5-11"><a href="#cb5-11"></a></span>
+<span id="cb5-12"><a href="#cb5-12"></a><span class="fu">figures</span><span class="kw">:</span></span>
+<span id="cb5-13"><a href="#cb5-13"></a><span class="at">  </span><span class="fu">dev</span><span class="kw">:</span><span class="at"> png</span></span>
+<span id="cb5-14"><a href="#cb5-14"></a></span>
+<span id="cb5-15"><a href="#cb5-15"></a><span class="fu">reference</span><span class="kw">:</span></span>
+<span id="cb5-16"><a href="#cb5-16"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"Project Configuration"</span></span>
+<span id="cb5-17"><a href="#cb5-17"></a><span class="fu">    desc</span><span class="kw">: </span><span class="ch">&gt;</span></span>
+<span id="cb5-18"><a href="#cb5-18"></a>      General settings that are used to keep plots consistent.</span>
+<span id="cb5-19"><a href="#cb5-19"></a><span class="at">    </span><span class="fu">contents</span><span class="kw">:</span></span>
+<span id="cb5-20"><a href="#cb5-20"></a><span class="at">      </span><span class="kw">-</span><span class="at"> blank_x</span></span></code></pre></div>
+<p>And a R script included to add content to the package <code>R/blankpkg_dummy.R</code>:</p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">#' Dummy placeholder function</span>
+<span class="co">#'</span>
+<span class="co">#' \Sexpr[results=rd, stage=render]{lifecycle::badge("experimental")}</span>
+<span class="co">#' This is a small dummy function to exemplify the</span>
+<span class="co">#' {roxygen} documentation, the automatic testing etc...</span>
+<span class="co">#'</span>
+<span class="co">#' @param input character string</span>
+<span class="co">#'</span>
+<span class="co">#' @return echo the input string</span>
+<span class="co">#' @export</span>
+<span class="co">#'</span>
+<span class="co">#' @examples</span>
+<span class="co">#' blank_x()</span>
+<span class="co">#'</span>
+<span class="co">#' blank_x("something else...")</span>
+<span class="va">blank_x</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span> <span class="op">=</span> <span class="st">"planceholder code"</span><span class="op">)</span><span class="op">{</span>
+  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">input</span><span class="op">)</span>
+  <span class="op">}</span></code></pre></div>
+</div>
+<div id="github-actions" class="section level2">
+<h2 class="hasAnchor">
+<a href="#github-actions" class="anchor"></a>Github Actions</h2>
+<p>Github Actions are a convenient service to automatize some checks and processes after pushing changes in the repo to github. In this package these include a check if the package can be compiled and installed on several operating systems, checking th code coverage (the percentage of code that is double checked using testing) and updating the {pkgdown} web-page.</p>
+<p>To be able to use github actions, the access to the repo needs to be automatized. For this <em>personal access tokens</em> (GITHUB_PAT) are created in the github user settings. In a similar fashion an access token is created on <a href="codecov.io">codecov.io</a> and the repo is registered there to allow the monitoring of the code coverage. Both tokens are added as <em>repository secrets</em> in the settings of the repo on github.</p>
+<p>Than the actual github actions are defined as <em>workflows</em> within <code>.github/workflows/</code>:</p>
+<ul>
+<li>
+<code>R-CMD-check.yaml</code>: checks if the package can be build on several OS</li>
+<li>
+<code>pkgdown.yaml</code>: updates the {pkgdown} website upon push and publishes to the branch <code>gh-pages</code>
+</li>
+<li>
+<code>test-coverage.yaml</code>: checks the code coverage of the repo (the percentage of code that is tested)</li>
+</ul>
+</div>
+<div id="repository-badges" class="section level2">
+<h2 class="hasAnchor">
+<a href="#repository-badges" class="anchor"></a>Repository Badges</h2>
+<p>The <em>build</em> and <em>coverage</em> badge slots are created during the by the {usethis} commands <code>use_coverage()</code> and <code>use_github_action_check_standard()</code> commands and their content updated during the github actions. The <em>lifecycle</em> badge was added manually to the <code>README.Rmd</code>. This is than rendered as <code>.md</code> by running <code><a href="https://rdrr.io/pkg/knitr/man/knit.html">knitr::knit("README.Rmd", "README.md")</a></code></p>
+</div>
+<div id="tests" class="section level2">
+<h2 class="hasAnchor">
+<a href="#tests" class="anchor"></a>Tests</h2>
+<p>To bump the coverage to 100% a test is added to include coverage for the function <code><a href="../reference/blank_x.html">blank_x()</a></code>. Therefore the R file <code>blankpkg_dummy.R</code> is opened in the Rstudio editor and the from the console <code>use_test()</code> is run. This creates and opens the file <code>tests/testthat/blankpkg_dummy.R</code>, where we add two tests:</p>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">test_that</span><span class="op">(</span><span class="st">"default_str_length_is_still_17"</span>, <span class="op">{</span>
+  <span class="fu">expect_equal</span><span class="op">(</span><span class="fu">str_length</span><span class="op">(</span><span class="fu"><a href="../reference/blank_x.html">blank_x</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>, <span class="fl">17</span><span class="op">)</span>
+<span class="op">}</span><span class="op">)</span>
+
+<span class="fu">test_that</span><span class="op">(</span><span class="st">"alternaitve_inputs"</span>, <span class="op">{</span>
+  <span class="fu">expect_equal</span><span class="op">(</span><span class="fu">str_length</span><span class="op">(</span><span class="fu"><a href="../reference/blank_x.html">blank_x</a></span><span class="op">(</span><span class="st">"dadum"</span><span class="op">)</span><span class="op">)</span>, <span class="fl">5</span><span class="op">)</span>
+<span class="op">}</span><span class="op">)</span></code></pre></div>
+</div>
+</div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
 
-      </div>
+        <nav id="toc" data-toggle="toc"><h2 data-toc-skip>Contents</h2>
+    </nav>
+</div>
 
 </div>
 
