@@ -32,6 +32,7 @@ The whole package creation covers
   - automatic web page generation using {[pkgdown](https://pkgdown.r-lib.org/)}
 - generating shiny badges ![dummy_badge](https://img.shields.io/badge/badge-shiny-brightgreen) for the repository.
 - code testing powered by {[testthat](https://testthat.r-lib.org)}
+- documentation of the code status with {[lifecycle](https://lifecycle.r-lib.org/)}
 
 ## Installation
 
