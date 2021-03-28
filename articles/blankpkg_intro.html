@@ -102,13 +102,13 @@
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/k-hench/blankpkg">blankpkg</a></span><span class="op">)</span>
 <span class="co">#&gt; Loading required package: stringr</span></code></pre></div>
-<div id="generic-packacge-creation" class="section level1">
+<div id="generic-package-creation" class="section level1">
 <h1 class="hasAnchor">
-<a href="#generic-packacge-creation" class="anchor"></a>Generic Packacge Creation</h1>
+<a href="#generic-package-creation" class="anchor"></a>Generic Package Creation</h1>
 <div id="first-steps" class="section level2">
 <h2 class="hasAnchor">
 <a href="#first-steps" class="anchor"></a>First Steps</h2>
-<p>The initial creation of the package happened with {usethis} through running the R script <code>usethis_blank_pkg.R</code> from the command line:</p>
+<p>The initial creation of the package happened with {<a href="https://usethis.r-lib.org/">usethis</a>} through running the R script <code>usethis_blank_pkg.R</code> from the command line:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1"></a><span class="ex">RScript</span> --vanilla usethis_blank_pkg.R</span></code></pre></div>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">usethis</span><span class="op">)</span>
@@ -243,7 +243,7 @@
 <div id="repository-badges" class="section level2">
 <h2 class="hasAnchor">
 <a href="#repository-badges" class="anchor"></a>Repository Badges</h2>
-<p>The <em>build</em> and <em>coverage</em> badge slots are created during the by the {usethis} commands <code>use_coverage()</code> and <code>use_github_action_check_standard()</code> commands and their content updated during the github actions. The <em>lifecycle</em> badge was added manually to the <code>README.Rmd</code>. This is than rendered as <code>.md</code> by running <code><a href="https://rdrr.io/pkg/knitr/man/knit.html">knitr::knit("README.Rmd", "README.md")</a></code></p>
+<p>The <em>build</em> and <em>coverage</em> badge slots are created during the by the {usethis} commands <code>use_coverage()</code> and <code>use_github_action_check_standard()</code> commands and their content updated during the github actions. The {<a href="https://lifecycle.r-lib.org/">lifecycle</a>} badge was added manually to the <code>README.Rmd</code>. This is than rendered as <code>.md</code> by running <code><a href="https://rdrr.io/pkg/knitr/man/knit.html">knitr::knit("README.Rmd", "README.md")</a></code></p>
 </div>
 <div id="tests" class="section level2">
 <h2 class="hasAnchor">
